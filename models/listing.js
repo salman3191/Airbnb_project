@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 
 const Schema = mongoose.Schema;
 
-const listingScehma = new Schema({
+const listingSchema = new Schema({
   title: {
     type: String,
 
@@ -14,13 +14,20 @@ const listingScehma = new Schema({
   },
 
   image: {
-    type: String,
-    default:
-      "https://images.unsplash.com/photo-1513694203232-719a280e022f?q=80&w=1469&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    set: (v) =>
-      v === ""
-        ? "https://images.unsplash.com/photo-1513694203232-719a280e022f?q=80&w=1469&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-        : v /*to set value for image if image link given by user is empty*/,
+    filename: {
+      type: String,
+    },
+
+    url: {
+      type: String,
+
+      default:
+        "https://images.unsplash.com/photo-1513694203232-719a280e022f?q=80&w=1469&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      set: (v) =>
+        v === ""
+          ? "https://images.unsplash.com/photo-1513694203232-719a280e022f?q=80&w=1469&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+          : v /*to set value for image if image link given by user is empty*/,
+    },
   },
 
   price: {
@@ -35,6 +42,6 @@ const listingScehma = new Schema({
   },
 });
 
-const listing = mongoose.model("listing", listingScehma);
+const listing = mongoose.model("listing", listingSchema);
 
 module.exports = listing;

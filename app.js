@@ -7,6 +7,7 @@ const path = require("path");
 
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
+app.use(express.urlencoded({ extender: true }));
 
 const port = 8080;
 
@@ -25,6 +26,14 @@ async function main() {
 app.get("/listings", async (req, res) => {
   const allListings = await listing.find({});
   res.render("listings/index.ejs", { allListings });
+});
+
+// show route
+app.get("/listings/:id", async (req, res) => {
+  let { id } = req.params;
+  const data = await listing.findById(id);
+
+  res.render("listings/show.ejs", { data });
 });
 
 // app.get("/listingtest", async (req, res) => {

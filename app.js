@@ -78,6 +78,12 @@ app.put("/listings/:id", async (req, res) => {
 //   res.send("sucessful testing");
 // });
 
+//  Delete route
+app.delete("/listings/:id", async (req, res) => {
+  let { id } = req.params;
+  await listing.findByIdAndDelete(id);
+  res.redirect("/listings");
+});
 app.listen(port, (req, res) => {
   console.log("listening to port 8080");
 });

@@ -1,26 +1,19 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>WonderLust</title>
-  </head>
-  <body>
-    <h1>listings Details</h1>
+<% layout("/layouts/boilerplate") %>
+<body>
+  <h1>listings Details</h1>
 
-    <ul>
-      <li><%= data.title %></li>
-      <li><%= data.description %></li>
-      <li><%= data.location %></li>
-      <li>&#8377;<%= data.price.toLocaleString("en-IN") %></li>
-      <li><%= data.country %></li>
-    </ul>
-    <br />
-    <a href="/listings/<%= data._id %>/edit">Edit listings</a>
-    <br />
-    <br />
-    <form method="post" action="/listings/<%= data.id %>?_method=DELETE">
-      <button>Delete listing</button>
-    </form>
-  </body>
-</html>
+  <ul>
+    <li><%= data.title %></li>
+    <li><%= data.description %></li>
+    <li><%= data.location %></li>
+    <li>&#8377;<%= data.price.toLocaleString("en-IN") %></li>
+    <li><%= data.country %></li>
+  </ul>
+  <br />
+  <a href="/listings/<%= data._id %>/edit">Edit listings</a>
+  <br />
+  <br />
+  <form method="post" action="/listings/<%= data.id %>?_method=DELETE">
+    <button>Delete listing</button>
+  </form>
+</body>

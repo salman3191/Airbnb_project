@@ -97,3 +97,11 @@ body {
   background-color: #ff385c !important;
   border: none !important;
 }
+
+/* edit page */
+
+.edit-btn {
+  background-color: #ff385c !important;
+  border: none !important;
+  color: white !important;
+}

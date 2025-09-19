@@ -104,4 +104,17 @@ body {
   background-color: #ff385c !important;
   border: none !important;
   color: white !important;
+  margin-right: 3px;
+}
+
+/* show page */
+.delete-btn {
+  background-color: #ff385c !important;
+  border: none !important;
+  color: white !important;
+}
+
+.show-img {
+  height: 35vh;
+  width: 75vh !important;
 }

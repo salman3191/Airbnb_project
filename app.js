@@ -46,9 +46,13 @@ app.get("/listings/:id", async (req, res) => {
 });
 // new route
 app.post("/listings", async (req, res) => {
-  const newlisting = new listing(req.body.listing);
-  await newlisting.save();
-  res.redirect("/listings");
+  try {
+    const newlisting = new listing(req.body.listing);
+    await newlisting.save();
+    res.redirect("/listings");
+  } catch (err) {
+    next(err);
+  }
 });
 
 // Edit route
@@ -85,6 +89,10 @@ app.delete("/listings/:id", async (req, res) => {
   let { id } = req.params;
   await listing.findByIdAndDelete(id);
   res.redirect("/listings");
+});
+
+app.use((err, req, res, next) => {
+  res.send("something went wrong!");
 });
 app.listen(port, (req, res) => {
   console.log("listening to port 8080");

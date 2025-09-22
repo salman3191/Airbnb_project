@@ -2,7 +2,12 @@
 <div class="row">
   <div class="col-8 offset-2">
     <h3>Edit Listing</h3>
-    <form method="post" action="/listings/<%= data._id %>?_method=PUT">
+    <form
+      method="post"
+      action="/listings/<%= data._id %>?_method=PUT"
+      novalidate
+      class="needs-validation"
+    >
       <label for="title" class="form-label">title</label>
       <div class="mb-3">
         <input
@@ -10,13 +15,16 @@
           value="<%= data.title %>"
           type="text"
           class="form-control"
+          required
         />
+        <div class="valid-feedback">title looks good!</div>
       </div>
       <div class="mb-3">
         <label for="description" class="form-label">description</label>
-        <textarea name="listing[description]" class="form-control">
+        <textarea name="listing[description]" class="form-control" required>
 <%= data.description %></textarea
         >
+        <div class="invalid-feedback">Description should be short</div>
       </div>
       <div class="mb-3">
         <label for="image" class="form-label">Image URL/link</label>
@@ -25,6 +33,7 @@
           value="<%= data.image.url %>"
           type="text"
           class="form-control"
+          required
         />
       </div>
       <div class="mb-3">
@@ -44,8 +53,11 @@
             value="<%= data.country %>"
             type="text"
             class="form-control"
+            required
           />
+          <div class="invalid-feedback">Enter country name</div>
         </div>
+
         <div class="mb-3 col-md-7">
           <label for="location" class="form-label">location</label>
           <input
@@ -55,6 +67,7 @@
             class="form-control"
           />
         </div>
+        <div class="invalid-feedback">Enter location</div>
       </div>
 
       <button class="btn edit-btn">Edit</button>

@@ -6,6 +6,8 @@ const listing = require("./models/listing.js");
 const path = require("path");
 const methodOverride = require("method-override");
 const ejsMate = require("ejs-mate");
+const wrapAsync = require("./utils/wrapAsync.js");
+
 app.use(express.static(path.join(__dirname, "/public")));
 
 app.set("view engine", "ejs");
@@ -45,15 +47,14 @@ app.get("/listings/:id", async (req, res) => {
   res.render("listings/show.ejs", { data });
 });
 // new route
-app.post("/listings", async (req, res) => {
-  try {
+app.post(
+  "/listings",
+  wrapAsync(async (req, res) => {
     const newlisting = new listing(req.body.listing);
     await newlisting.save();
     res.redirect("/listings");
-  } catch (err) {
-    next(err);
-  }
-});
+  })
+);
 
 // Edit route
 app.get("/listings/:id/edit", async (req, res) => {

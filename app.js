@@ -29,21 +29,33 @@ async function main() {
   await mongoose.connect(MONGO_URL);
 }
 
+const validateListing = (req, res, next) => {
+  const { error } = listingSchema.validate(req.body);
+  console.log(error);
+  if (error) {
+    let errmsg = error.details.map((el) => el.message).join(",");
+    throw new ExpressError(404, errmsg);
+  } else {
+    next();
+  }
+};
+
 // index route
 
-app.get("/listings", async (req, res) => {
+app.get("/listings", validateListing, async (req, res) => {
   const allListings = await listing.find({});
   res.render("listings/index.ejs", { allListings });
 });
 
 // create new route
-app.get("/listings/new", (req, res) => {
+app.get("/listings/new", validateListing, (req, res) => {
   res.render("listings/new.ejs");
 });
 
 // show route
 app.get(
   "/listings/:id",
+  validateListing,
   wrapAsync(async (req, res) => {
     let { id } = req.params;
     const data = await listing.findById(id);
@@ -54,12 +66,8 @@ app.get(
 // new route
 app.post(
   "/listings",
+  validateListing,
   wrapAsync(async (req, res, next) => {
-    let result = listingSchema.validate(req.body);
-    console.log(result);
-    if (result.error) {
-      throw new ExpressError(404, result.error);
-    }
     const newlisting = new listing(req.body.listing);
 
     await newlisting.save();
@@ -70,6 +78,7 @@ app.post(
 // Edit route
 app.get(
   "/listings/:id/edit",
+  validateListing,
   wrapAsync(async (req, res) => {
     let { id } = req.params;
 
@@ -82,6 +91,7 @@ app.get(
 // updata route
 app.put(
   "/listings/:id",
+  validateListing,
   wrapAsync(async (req, res) => {
     let { id } = req.params;
     await listing.findByIdAndUpdate(id, { ...req.body.listing });
@@ -105,6 +115,7 @@ app.put(
 //  Delete route
 app.delete(
   "/listings/:id",
+  validateListing,
   wrapAsync(async (req, res) => {
     let { id } = req.params;
     await listing.findByIdAndDelete(id);

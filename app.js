@@ -54,6 +54,9 @@ app.get(
 app.post(
   "/listings",
   wrapAsync(async (req, res) => {
+    if (!req.body.listing) {
+      throw new ExpressError(400, "send valid response for listings");
+    }
     const newlisting = new listing(req.body.listing);
     await newlisting.save();
     res.redirect("/listings");
@@ -112,7 +115,8 @@ app.use((req, res, next) => {
 
 app.use((err, req, res, next) => {
   let { statusCode = 500, message = "something went wrong!" } = err;
-  res.status(statusCode).send(message);
+  // res.status(statusCode).send(message);
+  res.status(statusCode).render("listings/error.ejs", { message });
 });
 app.listen(port, (req, res) => {
   console.log("listening to port 8080");

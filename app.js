@@ -71,7 +71,7 @@ app.get(
   validateListing,
   wrapAsync(async (req, res) => {
     let { id } = req.params;
-    const data = await listing.findById(id);
+    const data = await listing.findById(id).populate("reviews");
 
     res.render("listings/show.ejs", { data });
   })

@@ -138,7 +138,7 @@ app.delete(
   })
 );
 
-// review route
+// post review route
 app.post(
   "/listings/:id/reviews",
   validateReview,
@@ -154,6 +154,16 @@ app.post(
   })
 );
 
+// delete review route
+app.delete(
+  "/listings/:id/reviews/:ReviewId",
+  wrapAsync(async (req, res) => {
+    let { id, ReviewId } = req.params;
+    await listing.findByIdAndUpdate(id, { $pull: { reviews: ReviewId } });
+    await Review.findByIdAndDelete(ReviewId);
+    res.redirect(`/listings/${id}`);
+  })
+);
 // if non of route match
 app.use((req, res, next) => {
   next(new ExpressError(404, "page not found!"));

@@ -34,7 +34,7 @@
   <hr>
 
   <h4>leave a Review</h4>
-  <form action="">
+  <form action="/listings/<%=data.id %>/reviews" method="post">
     <div>
       <label for="rating" class="form-label">Rating</label>
       <input type="range" class="form-range" min="1" max="5" id="rating" name="review[rating]">

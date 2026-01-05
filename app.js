@@ -9,6 +9,7 @@ const ejsMate = require("ejs-mate");
 const wrapAsync = require("./utils/wrapAsync.js");
 const ExpressError = require("./utils/ExpressError.js");
 const { listingSchema } = require("./schema.js");
+const Review = require("./models/review.js");
 
 app.use(express.static(path.join(__dirname, "/public")));
 
@@ -124,6 +125,18 @@ app.delete(
     res.redirect("/listings");
   })
 );
+
+// review route
+app.post("/listings/:id/reviews", async (req, res) => {
+  let lstng = await listing.findById(req.params.id);
+  let newReview = new Review(req.body.review);
+  lstng.reviews.push(newReview);
+  await newReview.save();
+  await lstng.save();
+  // console.log("new review save");
+  // res.send("new review save");
+  res.redirect(`/listings/${lstng._id}`);
+});
 
 // if non of route match
 app.use((req, res, next) => {

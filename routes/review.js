@@ -5,7 +5,7 @@ const { reviewSchema } = require("../schema.js");
 const Review = require("../models/review.js");
 const listing = require("../models/listing.js");
 
-const router = express.Router();
+const router = express.Router({ mergeParams: true });
 // to validate review
 const validateReview = (req, res, next) => {
   const { error } = reviewSchema.validate(req.body);

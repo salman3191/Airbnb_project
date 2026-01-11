@@ -24,3 +24,12 @@
 - ## **Key Features:**
   -Session data is not saved in the cookie itself, just the session ID. Session data is stored server-side.
 - **Docs:** [(https://www.npmjs.com/package/express-session)]
+
+## package :<connect-flash>
+
+- **Installed On:** 2026-01-11
+- **Purpose:** flash messages when something is new is created
+
+- **Used In:** < app.js,listing.js>
+- ## **Key Features:** The flash is a special area of the session used for storing messages. Messages are written to the flash and cleared after being displayed to the user. The flash is typically used in combination with redirects, ensuring that the message is available to the next page that is to be rendered.
+- **Docs:** [(https://www.npmjs.com/package/connect-flash)]

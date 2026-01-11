@@ -18,6 +18,8 @@
     "express-session": "^1.18.2",
     "joi": "^18.0.1",
     "method-override": "^3.0.0",
-    "mongoose": "^8.18.1"
+    "mongoose": "^8.18.1",
+    "patch-package": "^8.0.1",
+    "postinstall-postinstall": "^2.1.0"
   }
 }

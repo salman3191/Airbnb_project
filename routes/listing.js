@@ -8,7 +8,7 @@ const router = express.Router();
 // to validation listing
 const validateListing = (req, res, next) => {
   const { error } = listingSchema.validate(req.body);
-  console.log(error);
+  // console.log(error);
   if (error) {
     let errmsg = error.details.map((el) => el.message).join(",");
     throw new ExpressError(404, errmsg);
@@ -73,6 +73,8 @@ router.put(
   wrapAsync(async (req, res) => {
     let { id } = req.params;
     await listing.findByIdAndUpdate(id, { ...req.body.listing });
+    req.flash("success", "listing updated!");
+
     res.redirect("/listings");
   })
 );
@@ -85,6 +87,7 @@ router.delete(
     let { id } = req.params;
     // console.log(req);
 
+    req.flash("success", "listing deleted successfully");
     await listing.findByIdAndDelete(id);
     res.redirect("/listings");
   })

@@ -38,7 +38,7 @@ router.post(
 router.delete(
   "/:ReviewId",
   wrapAsync(async (req, res) => {
-    let { id, ReviewId } = req.params;
+    let { id, reviewId } = req.params;
     await listing.findByIdAndUpdate(id, { $pull: { reviews: ReviewId } });
     await Review.findByIdAndDelete(ReviewId);
     req.flash("success", "Review Deleted!");

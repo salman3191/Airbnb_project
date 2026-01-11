@@ -21,6 +21,7 @@ const validateListing = (req, res, next) => {
 
 router.get("/", validateListing, async (req, res) => {
   const allListings = await listing.find({});
+
   res.render("listings/index.ejs", { allListings });
 });
 
@@ -36,7 +37,10 @@ router.get(
   wrapAsync(async (req, res) => {
     let { id } = req.params;
     const data = await listing.findById(id).populate("reviews");
-
+    if (!data) {
+      req.flash("error", "listing not found!");
+      return res.redirect("/listings");
+    }
     res.render("listings/show.ejs", { data });
   })
 );

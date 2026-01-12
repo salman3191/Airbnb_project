@@ -33,3 +33,14 @@
 - **Used In:** < app.js,listing.js>
 - ## **Key Features:** The flash is a special area of the session used for storing messages. Messages are written to the flash and cleared after being displayed to the user. The flash is typically used in combination with redirects, ensuring that the message is available to the next page that is to be rendered.
 - **Docs:** [(https://www.npmjs.com/package/connect-flash)]
+
+## package :<passport>
+
+-an npm package
+
+- **Installed On:** 2026-01-12
+- **Purpose:** it is a library that helps in authentication,an authentication middleware for node.js
+
+- **Used In:** < app.js,listing.js>
+- ## **Key Features:** it has a comprehensive set of strategies support authentication using a username,password,facebook ,twitter etc
+- **Docs:** [(https://www.passportjs.org/)]

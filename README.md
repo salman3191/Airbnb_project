@@ -36,11 +36,12 @@
 
 ## package :<passport>
 
--an npm package
+-An npm package
 
 - **Installed On:** 2026-01-12
 - **Purpose:** it is a library that helps in authentication,an authentication middleware for node.js
-
+  -passport-strategies :passport-local also this we install
+  -also we install passport-local-mongoose (as we are using mongodb in project)
 - **Used In:** < app.js,listing.js>
 - ## **Key Features:** it has a comprehensive set of strategies support authentication using a username,password,facebook ,twitter etc
 - **Docs:** [(https://www.passportjs.org/)]

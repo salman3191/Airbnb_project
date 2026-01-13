@@ -8,8 +8,10 @@ const methodOverride = require("method-override");
 const ejsMate = require("ejs-mate");
 
 const ExpressError = require("./utils/ExpressError.js");
-const listings = require("./routes/listing.js");
-const reviews = require("./routes/review.js");
+const listingRouter = require("./routes/listing.js");
+const reviewRouter = require("./routes/review.js");
+const userRouter = require("./routes/user.js");
+
 const session = require("express-session");
 const flash = require("connect-flash");
 const passport = require("passport");
@@ -70,10 +72,13 @@ app.get("/demoUser", async (req, res) => {
 });
 
 // for listing routes
-app.use("/listings", listings);
+app.use("/listings", listingRouter);
 
 // for review routes
-app.use("/listings/:id/reviews", reviews);
+app.use("/listings/:id/reviews", reviewRouter);
+
+// for user routes
+app.use("/", userRouter);
 
 // if non of route match
 app.use((req, res, next) => {

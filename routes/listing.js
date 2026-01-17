@@ -27,6 +27,11 @@ router.get("/", validateListing, async (req, res) => {
 
 // create new route
 router.get("/new", validateListing, (req, res) => {
+  console.log(req.user);
+  if (!req.isAuthenticated()) {
+    req.flash("error", "you must logged in ");
+    return res.redirect("/login");
+  }
   res.render("listings/new.ejs");
 });
 
@@ -42,7 +47,7 @@ router.get(
       return res.redirect("/listings");
     }
     res.render("listings/show.ejs", { data });
-  })
+  }),
 );
 // new route
 router.post(
@@ -54,7 +59,7 @@ router.post(
     await newlisting.save();
     req.flash("success", "New listing created!");
     res.redirect("/listings");
-  })
+  }),
 );
 
 // Edit route
@@ -67,7 +72,7 @@ router.get(
     const data = await listing.findById(id);
 
     res.render("listings/edit.ejs", { data });
-  })
+  }),
 );
 
 // updata route
@@ -80,7 +85,7 @@ router.put(
     req.flash("success", "listing updated!");
 
     res.redirect("/listings");
-  })
+  }),
 );
 
 //  Delete route
@@ -94,7 +99,7 @@ router.delete(
     req.flash("success", "listing deleted successfully");
     await listing.findByIdAndDelete(id);
     res.redirect("/listings");
-  })
+  }),
 );
 
 module.exports = router;

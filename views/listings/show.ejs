@@ -22,14 +22,14 @@
         </p>
       </div>
       <br>
-      <% if(CurrUser && CurrUser._id.equals(data.owner._id)) {%>
+      <!-- <if(CurrUser && CurrUser._id.equals(data.owner._id)) {%> -->
 
       
            <form method="post" action="/listings/<%= data.id %>?_method=DELETE">
               <a href="/listings/<%= data.id %>/edit" class="btn edit-btn">Edit</a>
                 <button class="btn delete-btn">Delete</button>
             </form>
-        <%} %>
+        <!-- <} %> -->
     </div>
 
     

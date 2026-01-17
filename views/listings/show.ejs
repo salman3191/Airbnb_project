@@ -14,7 +14,7 @@
        
 
         <p class="card-text">
-          <p class=".card-text"><i><%=data.owner.username%></i></p>
+          <p class=".card-text"><i> Owned by<%=data.owner.username%></i></p>
           <p class=".card-text"><%= data.description %> </p>
           <p class=".card-text">&#8377;<%= data.price.toLocaleString("en-IN") %> </p>
           <p class=".card-text"><%= data.location %></p>
@@ -22,10 +22,14 @@
         </p>
       </div>
       <br>
-      <form method="post" action="/listings/<%= data.id %>?_method=DELETE">
-      <a href="/listings/<%= data.id %>/edit" class="btn edit-btn">Edit</a>
-      <button class="btn delete-btn">Delete</button>
-    </form>
+      <% if(CurrUser && CurrUser._id.equals(data.owner._id)) {%>
+
+      
+           <form method="post" action="/listings/<%= data.id %>?_method=DELETE">
+              <a href="/listings/<%= data.id %>/edit" class="btn edit-btn">Edit</a>
+                <button class="btn delete-btn">Delete</button>
+            </form>
+        <%} %>
     </div>
 
     

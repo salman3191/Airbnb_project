@@ -14,11 +14,11 @@
        
 
         <p class="card-text">
-          <%= data.description %> <br />
-          &#8377;<%= data.price.toLocaleString("en-IN") %> <br />
-          <%= data.location %>
-          <br />
-          <%= data.country %>
+          <p class=".card-text"><i><%=data.owner.username%></i></p>
+          <p class=".card-text"><%= data.description %> </p>
+          <p class=".card-text">&#8377;<%= data.price.toLocaleString("en-IN") %> </p>
+          <p class=".card-text"><%= data.location %></p>
+          <p class=".card-text"><%= data.country %></p>
         </p>
       </div>
       <br>

@@ -4,6 +4,7 @@ const wrapAsync = require("../utils/wrapAsync.js");
 const ExpressError = require("../utils/ExpressError.js");
 const { listingSchema } = require("../schema.js");
 const router = express.Router();
+const { isLoggedIn } = require("../middleware.js");
 
 // to validation listing
 const validateListing = (req, res, next) => {
@@ -26,12 +27,7 @@ router.get("/", validateListing, async (req, res) => {
 });
 
 // create new route
-router.get("/new", validateListing, (req, res) => {
-  console.log(req.user);
-  if (!req.isAuthenticated()) {
-    req.flash("error", "you must logged in ");
-    return res.redirect("/login");
-  }
+router.get("/new", isLoggedIn, validateListing, (req, res) => {
   res.render("listings/new.ejs");
 });
 
@@ -65,6 +61,7 @@ router.post(
 // Edit route
 router.get(
   "/:id/edit",
+  isLoggedIn,
   validateListing,
   wrapAsync(async (req, res) => {
     let { id } = req.params;
@@ -78,6 +75,7 @@ router.get(
 // updata route
 router.put(
   "/:id",
+  isLoggedIn,
   validateListing,
   wrapAsync(async (req, res) => {
     let { id } = req.params;
@@ -91,7 +89,7 @@ router.put(
 //  Delete route
 router.delete(
   "/:id",
-
+  isLoggedIn,
   wrapAsync(async (req, res) => {
     let { id } = req.params;
     // console.log(req);

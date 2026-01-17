@@ -3,6 +3,7 @@ const router = express.Router();
 const User = require("../models/user");
 const wrapAsync = require("../utils/wrapAsync");
 const passport = require("passport");
+const { savedRedirectUrl } = require("../middleware.js");
 
 router.get("/signup", (req, res) => {
   res.render("users/signup.ejs");
@@ -38,13 +39,20 @@ router.get("/login", (req, res) => {
 
 router.post(
   "/login",
+  savedRedirectUrl,
   passport.authenticate("local", {
     failureRedirect: "/login",
     failureFlash: true,
   }),
   async (req, res) => {
     req.flash("success", "welcom to wonderlust u are logged in");
-    res.redirect("/listings");
+    let url = res.locals.savedUrl || "/listings";
+    res.redirect(url);
+
+    /*  if we write like this res.redirect("req.session.redirectUrl") 
+    it will be undefined as our
+    passport default session as we logged so thats why we use or with savedUrl
+    and passed as middle ware it will be stored before logged in */
   },
 );
 

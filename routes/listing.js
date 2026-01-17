@@ -25,7 +25,12 @@ router.get(
     let { id } = req.params;
     const data = await listing
       .findById(id)
-      .populate("reviews")
+      .populate({
+        path: "reviews",
+        populate: {
+          path: "author",
+        },
+      })
       .populate("owner");
     if (!data) {
       req.flash("error", "listing not found!");

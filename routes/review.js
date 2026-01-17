@@ -15,6 +15,7 @@ router.post(
   wrapAsync(async (req, res) => {
     let lstng = await listing.findById(req.params.id);
     let newReview = new Review(req.body.review);
+    newReview.author = req.user._id;
     lstng.reviews.push(newReview);
     await newReview.save();
     await lstng.save();

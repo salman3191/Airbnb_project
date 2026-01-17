@@ -25,7 +25,7 @@ router.post(
       req.flash("error", e.message);
       res.redirect("/signup");
     }
-  })
+  }),
 );
 router.get("/login", (req, res) => {
   res.render("users/login.ejs");
@@ -40,7 +40,17 @@ router.post(
   async (req, res) => {
     req.flash("success", "welcom to wonderlust u are logged in");
     res.redirect("/listings");
-  }
+  },
 );
+
+router.get("/logout", (req, res, next) => {
+  req.logout((err) => {
+    if (err) {
+      return next(err);
+    }
+    req.flash("success", "you are logged in! ");
+    res.redirect("/listings");
+  });
+});
 
 module.exports = router;

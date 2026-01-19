@@ -61,3 +61,33 @@
 - **Used In:** < app.js>
 
 - **Docs:** [(https://www.npmjs.com/package/multer)]
+
+## package :<dotenv>
+
+-An npm package
+
+- **Installed On:** 2026-01-19
+- **Purpose:** Dotenv is a zero-dependency module that loads environment variables from a .env file into process.env. Storing configuration in the environment separate from code is based on The Twelve-Factor App methodology.
+- **Used In:** < app.js etc>
+
+- **Docs:** [(https://www.npmjs.com/package/dotenv)]
+
+## package :<cloudinary>
+
+-An npm package
+
+- **Installed On:** 2026-01-19
+- **Purpose:** The Cloudinary Node SDK allows you to quickly and easily integrate your application with Cloudinary. Effortlessly optimize, transform, upload and manage your cloud's assets.
+- **Used In:** < listing.js etc>
+
+- **Docs:** [(https://www.npmjs.com/package/cloudinary)]
+
+## package :<multer-storage-cloudinary>
+
+-An npm package
+
+- **Installed On:** 2026-01-19
+- **Purpose:** A multer storage engine for Cloudinary. Also consult the Cloudinary API. and command npm i multer-storage-cloudinary --legacy-peer-deps
+- **Used In:** < listing.js etc>
+
+- **Docs:** [(https://www.npmjs.com/package/multer-storage-cloudinary)]

@@ -51,3 +51,13 @@
 - **Purpose:** to style ratings
 - **Used In:** < show.ejs,rating.css,boilerplate.ejs>
 - **Github link:** [(https://github.com/LunarLogic/starability)]
+
+## package :<multer>
+
+-An npm package
+
+- **Installed On:** 2026-01-19
+- **Purpose:** iMulter is a node.js middleware for handling multipart/form-data, which is primarily used for uploading files
+- **Used In:** < app.js>
+
+- **Docs:** [(https://www.npmjs.com/package/multer)]

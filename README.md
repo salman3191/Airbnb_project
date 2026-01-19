@@ -45,3 +45,9 @@
 - **Used In:** < app.js,listing.js>
 - ## **Key Features:** it has a comprehensive set of strategies support authentication using a username,password,facebook ,twitter etc
 - **Docs:** [(https://www.passportjs.org/)]
+
+# library :<starability>
+
+- **Purpose:** to style ratings
+- **Used In:** < show.ejs,rating.css,boilerplate.ejs>
+- **Github link:** [(https://github.com/LunarLogic/starability)]

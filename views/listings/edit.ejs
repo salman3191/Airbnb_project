@@ -28,13 +28,12 @@
         <div class="invalid-feedback">Description should be short</div>
       </div>
       <div class="mb-3">
-        <label for="image" class="form-label">Image URL/link</label>
-        <input
-          name="listing[image]"
-          value="<%= data.image.url %>"
-          type="file"
-          class="form-control"
-        />
+        Original Listing Image
+        <img src="<%= originalUrl %>" />
+      </div>
+      <div class="mb-3">
+        <label for="image" class="form-label">Upload New Image</label>
+        <input name="listing[image]" type="file" class="form-control" />
       </div>
       <div class="mb-3">
         <label for="price" class="form-label"></label>

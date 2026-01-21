@@ -91,3 +91,13 @@
 - **Used In:** < listing.js etc>
 
 - **Docs:** [(https://www.npmjs.com/package/multer-storage-cloudinary)]
+
+## package :<@mapbox/mapbox-sd>
+
+-An npm package
+
+- **Installed On:** 2026-01-21
+- **Purpose:** command to install (npm install @mapbox/mapbox-sdk --legacy-peer-deps)
+- **Used In:** < listing.js etc>
+
+- **Docs:** [(https://github.com/mapbox/mapbox-sdk-js/tree/main)]

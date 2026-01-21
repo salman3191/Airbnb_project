@@ -118,3 +118,9 @@ body {
   height: 35vh;
   width: 75vh !important;
 }
+
+/* map */
+#map {
+  height: 400px;
+  width: 80vh;
+}

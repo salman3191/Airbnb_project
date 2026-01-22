@@ -38,9 +38,7 @@ module.exports.createListing = async (req, res, next) => {
       limit: 1,
     })
     .send();
-  console.log(response.body.features[0].geometry);
-
-  res.send("done!");
+  // console.log(response.body.features[0].geometry);
 
   let url = req.file.path;
   let filename = req.file.filename;
@@ -49,7 +47,9 @@ module.exports.createListing = async (req, res, next) => {
   // console.log(req.user);
   newlisting.owner = req.user._id;
   newlisting.image = { url, filename };
-  await newlisting.save();
+  newlisting.geometry = response.body.features[0].geometry;
+  const cordinates = await newlisting.save();
+  console.log(cordinates);
   req.flash("success", "New listing created!");
   res.redirect("/listings");
 };

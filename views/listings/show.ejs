@@ -1,8 +1,11 @@
 <% layout("/layouts/boilerplate") %>
-<script>const mapToken="<%=process.env.MAP_TOKEN%>";</script>
+<script>const mapToken="<%=process.env.MAP_TOKEN%>";
+const coordinates = <%- JSON.stringify(data.geometry.coordinates) %>;
+
+</script>
 <div class="row mt-3">
   <div class="col-8 offset-3 ">
-    <h1><b><%= data.title %></h1>
+    <h1><b><%= data.title %></b></h1>
       </div>
     <div class="card col-6 offset-3 show-card listin-card">
       <img

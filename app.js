@@ -5,7 +5,8 @@ if (process.env.NODE_ENV != "production") {
 const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
-const MONGO_URL = "mongodb://127.0.0.1:27017/WonderLust";
+// const MONGO_URL = "mongodb://127.0.0.1:27017/WonderLust";
+const atlasUrl = process.env.ATLASDB_URL;
 
 const path = require("path");
 const methodOverride = require("method-override");
@@ -38,7 +39,7 @@ main()
   .catch((err) => console.log(err));
 
 async function main() {
-  await mongoose.connect(MONGO_URL);
+  await mongoose.connect(atlasUrl);
 }
 sessionOptions = {
   secret: "mysupersecretcode",

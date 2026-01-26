@@ -18,6 +18,7 @@ const reviewRouter = require("./routes/review.js");
 const userRouter = require("./routes/user.js");
 
 const session = require("express-session");
+const MongoStore = require("connect-mongo");
 const flash = require("connect-flash");
 const passport = require("passport");
 const User = require("./models/user.js");
@@ -41,7 +42,19 @@ main()
 async function main() {
   await mongoose.connect(atlasUrl);
 }
+
+const store = MongoStore.create({
+  mongoUrl: atlasUrl,
+  crypto: {
+    secret: "mysupersecretcode",
+  },
+  touchAfter: 24 * 3600,
+});
+
+store.on("error", (err) => console.log("ERROR in MONGO SESSION STORE", err));
+
 sessionOptions = {
+  store,
   secret: "mysupersecretcode",
   resave: false,
   saveUninitialized: true,

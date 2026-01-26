@@ -46,7 +46,7 @@ async function main() {
 const store = MongoStore.create({
   mongoUrl: atlasUrl,
   crypto: {
-    secret: "mysupersecretcode",
+    secret: process.env.SECRET,
   },
   touchAfter: 24 * 3600,
 });
@@ -55,7 +55,7 @@ store.on("error", (err) => console.log("ERROR in MONGO SESSION STORE", err));
 
 sessionOptions = {
   store,
-  secret: "mysupersecretcode",
+  secret: process.env.SECRET,
   resave: false,
   saveUninitialized: true,
 

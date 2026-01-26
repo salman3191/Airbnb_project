@@ -73,7 +73,7 @@ const coordinates = <%- JSON.stringify(data.geometry.coordinates) %>;
      <%} %>
   </form>
   
- <% if(data.reviews>0) {%>
+ <% if(data.reviews.length>0) {%>
   <div class="row">
      <p><b>All Reviews</b></p>
     <% for(let review of data.reviews){%>
